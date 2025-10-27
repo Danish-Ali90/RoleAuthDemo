@@ -24,7 +24,7 @@ namespace RoleAuthDemo.Controllers
             return View();
         }
 
-        // ✅ New Action: User Count Page
+        // ✅ New Action: User Count Page;;
         public async Task<IActionResult> UserCount()
         {
             var allRoles = _roleManager.Roles.ToList();
