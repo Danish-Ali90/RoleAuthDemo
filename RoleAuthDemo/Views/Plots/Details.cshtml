@@ -1,0 +1,44 @@
+﻿@model RoleAuthDemo.Models.Plot
+@{
+    ViewData["Title"] = "Plot Details";
+}
+
+<div class="container mt-4">
+    <h2 class="text-info fw-semibold mb-3">
+        <i class="bi bi-eye me-2"></i> Plot Details
+    </h2>
+
+    <div class="card shadow-sm p-4 border-0">
+        <dl class="row mb-4">
+            <dt class="col-sm-3 fw-semibold">Plot Number</dt>
+            <dd class="col-sm-9">@Model.PlotNumber</dd>
+
+            <dt class="col-sm-3 fw-semibold">Size (Sq. Feet)</dt>
+            <dd class="col-sm-9">@Model.SizePerSqFeet</dd>
+
+            <dt class="col-sm-3 fw-semibold">Status</dt>
+            <dd class="col-sm-9">
+                @if (Model.Status)
+                {
+                    <span class="badge bg-success">Active</span>
+                }
+                else
+                {
+                    <span class="badge bg-secondary">Inactive</span>
+                }
+            </dd>
+        </dl>
+
+        <div class="d-flex justify-content-start">
+            <!-- ✅ Compact Edit Button -->
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning btn-sm fw-semibold me-2 px-3 py-1">
+                <i class="bi bi-pencil-square me-1"></i> Edit
+            </a>
+
+            <!-- ✅ Compact Back Button -->
+            <a asp-action="Index" class="btn btn-secondary btn-sm fw-semibold px-3 py-1">
+                <i class="bi bi-arrow-left me-1"></i> Back
+            </a>
+        </div>
+    </div>
+</div>

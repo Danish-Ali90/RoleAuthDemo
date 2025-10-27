@@ -1,0 +1,123 @@
+﻿@model RoleAuthDemo.ViewModels.CreateUserViewModel
+
+@{
+    ViewData["Title"] = "Create User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-5 pt-2">
+    <div class="mb-3 border-bottom pb-2">
+        <h2 class="text-primary fw-semibold">
+            <i class="bi bi-person-plus-fill me-2"></i> Create New User
+        </h2>
+    </div>
+
+    <form asp-action="Create" method="post" class="bg-white shadow-sm rounded-4 p-4 compact-form">
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label asp-for="FirstName" class="form-label fw-semibold"></label>
+                <input asp-for="FirstName" class="form-control shadow-none" placeholder="Enter first name" />
+                <span asp-validation-for="FirstName" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="LastName" class="form-label fw-semibold"></label>
+                <input asp-for="LastName" class="form-control shadow-none" placeholder="Enter last name" />
+                <span asp-validation-for="LastName" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="Email" class="form-label fw-semibold"></label>
+                <input asp-for="Email" type="email" class="form-control shadow-none" placeholder="Enter email address" />
+                <span asp-validation-for="Email" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="PhoneNumber" class="form-label fw-semibold"></label>
+                <input asp-for="PhoneNumber" class="form-control shadow-none" placeholder="Enter phone number" />
+                <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="CNIC" class="form-label fw-semibold"></label>
+                <input asp-for="CNIC" class="form-control shadow-none" placeholder="Enter CNIC" />
+                <span asp-validation-for="CNIC" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="Password" class="form-label fw-semibold"></label>
+                <input asp-for="Password" type="password" class="form-control shadow-none" placeholder="Enter password" />
+                <span asp-validation-for="Password" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="Role" class="form-label fw-semibold"></label>
+                <select asp-for="Role" class="form-select shadow-none">
+                    <option value="">-- Select Role --</option>
+                    @foreach (var role in ViewBag.Roles as List<string>)
+                    {
+                        <option value="@role">@role</option>
+                    }
+                </select>
+                <span asp-validation-for="Role" class="text-danger small"></span>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <a asp-action="Index" class="btn btn-outline-secondary me-2 px-4">Cancel</a>
+            <button type="submit" class="btn btn-success px-4">
+                <i class="bi bi-person-check me-1"></i> Create
+            </button>
+        </div>
+    </form>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet" />
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        overflow-y: hidden; /* 🚫 No scroll */
+    }
+
+    .container-fluid {
+        max-width: 1300px;
+        margin: 0 auto;
+        margin-top: -5px; /* 🔼 Slight upward position */
+    }
+
+    .compact-form {
+        max-height: 75vh; /* ✅ Fits one screen */
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .form-control,
+    .form-select {
+        font-size: 0.9rem;
+        padding: 0.55rem 0.75rem;
+        border-radius: 0.45rem;
+        border: 1px solid #dee2e6;
+    }
+
+    .btn {
+        font-weight: 500;
+    }
+
+    .bg-white {
+        border: 1px solid #e0e0e0;
+    }
+
+    @@media (max-height: 700px) {
+        body {
+            overflow-y: auto; /* ✅ Allow scroll on small screens */
+        }
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

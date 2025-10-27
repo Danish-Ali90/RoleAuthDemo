@@ -1,0 +1,92 @@
+﻿@model IEnumerable<RoleAuthDemo.Models.Member>
+@{
+    ViewData["Title"] = "Manage Members";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-semibold mb-3">
+        <i class="bi bi-people-fill me-2"></i> Manage Members
+    </h2>
+
+    <a class="btn btn-success mb-3" asp-action="Create">
+        <i class="bi bi-person-plus"></i> Add Member
+    </a>
+
+    <div class="card shadow-sm p-3">
+        <div class="table-responsive">
+            <table id="membersTable" class="table table-bordered table-striped align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Photo</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>CNIC</th>
+                        <th>Phone</th>
+                        <th>City</th>
+                        <th style="width: 180px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                @if (!string.IsNullOrEmpty(item.ProfileImagePath))
+                                {
+                                    <img src="@Url.Content(item.ProfileImagePath)" alt="Profile" class="rounded-circle" width="45" height="45" style="object-fit: cover;" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/default-user.png" alt="Default" class="rounded-circle" width="45" height="45" style="object-fit: cover;" />
+                                }
+                            </td>
+                            <td>@item.FirstName</td>
+                            <td>@item.LastName</td>
+                            <td>@item.CNIC</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.City</td>
+                            <td class="text-center">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning me-1">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info me-1">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- ✅ DataTables & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" />
+
+    <script>
+        $(document).ready(function () {
+            $('#membersTable').DataTable({
+                pageLength: 10,
+                lengthMenu: [5, 10, 25, 50],
+                ordering: true,
+                searching: true,
+                columnDefs: [
+                    { orderable: false, targets: [0, 6] } // disable sort on Photo & Actions
+                ],
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search members..."
+                }
+            });
+        });
+    </script>
+}

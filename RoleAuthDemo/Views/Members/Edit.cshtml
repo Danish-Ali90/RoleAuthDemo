@@ -1,0 +1,89 @@
+﻿@model RoleAuthDemo.Models.Member
+@{
+    ViewData["Title"] = "Edit Member";
+}
+
+<div class="container mt-4">
+    <h2 class="text-warning fw-semibold mb-3">
+        <i class="bi bi-pencil-square me-2"></i> Edit Member
+    </h2>
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data"
+          class="card p-4 shadow-sm mx-auto" style="max-width: 850px;">
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ProfileImagePath" />
+
+        <!-- ✅ Compact two-column layout -->
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="FirstName" class="form-label mb-1"></label>
+                <input asp-for="FirstName" class="form-control form-control-sm" />
+                <span asp-validation-for="FirstName" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="LastName" class="form-label mb-1"></label>
+                <input asp-for="LastName" class="form-control form-control-sm" />
+                <span asp-validation-for="LastName" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="CNIC" class="form-label mb-1"></label>
+                <input asp-for="CNIC" class="form-control form-control-sm" />
+                <span asp-validation-for="CNIC" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="PhoneNumber" class="form-label mb-1"></label>
+                <input asp-for="PhoneNumber" class="form-control form-control-sm" />
+                <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+            </div>
+
+            <div class="col-md-6">
+                <label asp-for="Address" class="form-label mb-1"></label>
+                <input asp-for="Address" class="form-control form-control-sm" />
+                <span asp-validation-for="Address" class="text-danger small"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="City" class="form-label mb-1"></label>
+                <input asp-for="City" class="form-control form-control-sm" />
+                <span asp-validation-for="City" class="text-danger small"></span>
+            </div>
+
+            <!-- ✅ Profile Picture -->
+            <div class="col-12">
+                <label class="form-label mb-1">Profile Picture</label>
+                <div class="d-flex align-items-center gap-3 flex-wrap">
+                    <div>
+                        @if (!string.IsNullOrEmpty(Model.ProfileImagePath))
+                        {
+                            <img src="@Url.Content(Model.ProfileImagePath)" alt="Profile" width="70" height="70"
+                                 class="rounded-circle border" style="object-fit: cover;" />
+                        }
+                        else
+                        {
+                            <img src="~/images/default-user.png" alt="Default" width="70" height="70"
+                                 class="rounded-circle border" style="object-fit: cover;" />
+                        }
+                    </div>
+                    <div style="min-width: 200px;">
+                        <input type="file" name="ProfileImage" class="form-control form-control-sm" accept="image/*" />
+                        <small class="text-muted">Upload new photo (optional)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Compact Buttons -->
+        <div class="d-flex justify-content-start mt-4">
+            <button type="submit" class="btn btn-sm btn-warning fw-semibold me-2 px-4">
+                <i class="bi bi-save me-1"></i> Save
+            </button>
+            <a asp-action="Index" class="btn btn-sm btn-secondary fw-semibold px-4">
+                <i class="bi bi-arrow-left me-1"></i> Back
+            </a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

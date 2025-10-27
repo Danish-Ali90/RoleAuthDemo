@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Welcome";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5 text-center">
+        <h1 class="display-4 text-primary fw-bold">Welcome to RoleAuth Demo</h1>
+        <p class="lead text-muted mb-4">
+            A professional role-based authentication system built with ASP.NET Core 8 & SQL Server.
+        </p>
+
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828506.png" width="120" class="mb-4" alt="Auth Logo" />
+
+        <div>
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Login</a>
+        </div>
+    </div>
+
+    <style>
+        .display-4 {
+            letter-spacing: 0.5px;
+        }
+
+        .btn {
+            border-radius: 10px;
+            padding: 10px 25px;
+        }
+    </style>
+
+</body>
+</html>

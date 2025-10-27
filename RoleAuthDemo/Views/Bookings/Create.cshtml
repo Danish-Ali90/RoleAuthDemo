@@ -1,0 +1,42 @@
+﻿@model RoleAuthDemo.Models.Booking
+
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary fw-semibold mb-3">
+        <i class="bi bi-plus-circle me-2"></i> Create Booking
+    </h2>
+
+    <div class="card shadow-sm p-4">
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="MemberId" class="form-label fw-semibold"></label>
+                <select asp-for="MemberId" class="form-select" asp-items="@(new SelectList(ViewBag.Members, "Id", "FirstName"))">
+                    <option value="">-- Select Member --</option>
+                </select>
+                <span asp-validation-for="MemberId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PlotId" class="form-label fw-semibold"></label>
+                <select asp-for="PlotId" class="form-select" asp-items="@(new SelectList(ViewBag.Plots, "Id", "PlotNumber"))">
+                    <option value="">-- Select Plot --</option>
+                </select>
+                <span asp-validation-for="PlotId" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-save me-1"></i> Save
+            </button>
+            <a asp-action="Index" class="btn btn-secondary ms-2">
+                <i class="bi bi-arrow-left"></i> Back
+            </a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
