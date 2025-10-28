@@ -19,5 +19,8 @@ namespace RoleAuthDemo.Data
         //New DbSet for Bookings
         public DbSet<Booking> Bookings { get; set; }
 
+        // New DbSet for Payments
+        public DbSet<Payment> Payments { get; set; }
+
     }
 }
